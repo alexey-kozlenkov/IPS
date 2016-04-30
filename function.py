@@ -7,10 +7,9 @@ def exact_y(t):
     return sin(5 * t)
 
 
-def approximate_y(t):
+def approximate_y(t, sigma2):
     exact = exact_y(t)
-    noise = np.random.normal(0, 1)
-    # noise = np.random.uniform(-0.1, 0.1)
+    noise = np.random.normal(0, sigma2)
     return exact + noise
 
 
@@ -19,8 +18,15 @@ def exact_u(t):
 
 
 def approximate_u(t, approx_y, alfa):
-    return (approximate_y(t + alfa) - approx_y) / alfa
+    return (approx_y[up_round(t + alfa, sorted(approx_y.keys()))] - approx_y[t]) / alfa
 
 
-def nu(delta):
-    return delta ** 2
+def eta(delta):
+    return delta ** 0.5
+
+
+def up_round(x, values):
+    values = list(reversed(values))
+    for right, left in zip(values[:-1], values[1:]):
+        if left <= x <= right:
+            return right
