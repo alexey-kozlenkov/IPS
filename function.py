@@ -18,11 +18,11 @@ def exact_u(t):
 
 
 def approximate_u(t, approx_y, alfa):
-    return (approx_y[up_round(t + alfa, sorted(approx_y.keys()))] - approx_y[t]) / alfa
+    return (approx_y[up_round(t + alfa, sorted(approx_y.keys()))] - approx_y[down_round(t - alfa, sorted(approx_y.keys()))]) / (2* alfa)
 
 
 def eta(delta):
-    return delta ** 0.5
+    return 10 * delta ** 0.5
 
 
 def up_round(x, values):
@@ -30,3 +30,9 @@ def up_round(x, values):
     for right, left in zip(values[:-1], values[1:]):
         if left <= x <= right:
             return right
+
+def down_round(x, values):
+    values = list(reversed(values))
+    for right, left in zip(values[:-1], values[1:]):
+        if left <= x <= right:
+            return left
