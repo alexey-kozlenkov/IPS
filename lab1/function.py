@@ -7,11 +7,14 @@ def exact_y(t):
     return sin(5 * t)
 
 
-def approximate_y(t, sigma2):
+def approximate_y_noise(t, sigma2):
     exact = exact_y(t)
     noise = np.random.normal(0, sigma2)
     return exact + noise
 
+
+def approximate_y_mush(t):
+    pass
 
 def exact_u(t):
     return 5 * cos(5 * t)
