@@ -13,8 +13,11 @@ def approximate_y_noise(t, sigma2):
     return exact + noise
 
 
-def approximate_y_mush(t):
-    pass
+def approximate_y_mush(t, a, w):
+    exact = exact_y(t)
+    mush = sum(a[i] * sin(w[i] * t) for i in range(len(a)))
+    return exact + mush
+
 
 def exact_u(t):
     return 5 * cos(5 * t)
