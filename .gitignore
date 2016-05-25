@@ -9,6 +9,9 @@ __pycache__/
 lab1/graphics/
 lab1/report
 
+lab2/graphics/
+lab2/report
+
 # C extensions
 *.so
 
